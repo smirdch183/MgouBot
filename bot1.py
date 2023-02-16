@@ -14,7 +14,7 @@ token = config.token
 bot = telebot.TeleBot(token)
 
 def upgrade():
-    wb = load_workbook(filename='2_4_курс_45_03_02_Иностранные_языки_и_культуры_стран_изучаемых_языков.xlsx')
+    wb = load_workbook(filename='файл.xlsx') #файл.xlsx
     sheet_ranges = wb['Лист1']
     bokv = sheet_ranges.merged_cells.ranges
     from openpyxl.utils.cell import range_boundaries
@@ -35,7 +35,7 @@ def upgrade():
 @bot.message_handler(commands=['start'])
 def start_message(message):
     
-    with open('groups.json', 'r') as f:
+    with open('groups.json', 'r') as f: #Создайте файл json
         groupload = json.load(f)
     
     if str(message.chat.id) not in groupload:
@@ -151,7 +151,7 @@ def get_text_message(message):
         error = [f'ошибка']
         for errors in error:
             if errors in message.text.lower(): 
-                bot.send_message(615009766,'{0}: {1}'.format(message.chat.username,message.text))
+                bot.send_message(Ваш айди,'{0}: {1}'.format(message.chat.username,message.text))# Ваш айди
                 bot.send_message(message.chat.id,'Сообщение отправлено')
         if message.text == 'Обновить таблицу':
             bot.send_message(message.chat.id,"Обновление...")
@@ -176,7 +176,7 @@ def get_text_message(message):
             btnError = types.KeyboardButton('Сообщить об ошибке')
             btnDonat = types.KeyboardButton('Пожертвование')
             markup.add(btnScheduleForTomorrow, btnSheduleForTodayy, btnSheduleForDate, btnUpdateTable, btnEditGroup, btnError, btnDonat)
-            bot.send_message(message.chat.id,"Сбер: 5469400038728155\nТинькофф: 2200700158154475", reply_markup=markup)
+            bot.send_message(message.chat.id,"Данные", reply_markup=markup) #Данные
         if message.text == 'Изменить группу':
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
             btn1 = types.KeyboardButton('04.ЛОБ.19.ИЯИКСИЯ(АЯИИЯ).1')
@@ -668,7 +668,7 @@ def get_text_message(message):
                 bot.send_message(message.chat.id,'{0}\n{1}\n\n{2}\n{3}\n\n{4}\n{5}\n\n{6}\n{7}\n\n{8}\n{9}\n\n{10}\n{11}\n\n{12}\n{13}\n\n{14}\n{15}'
                 .format(d1,i1,d2,i2,d3,i3,d4,i4,d5,i5,d6,i6,d7,i7,d8,i8), reply_markup=markup)
     if message.text == f'админ':
-        if str(message.chat.id) == '615009766':
+        if str(message.chat.id) == 'Ваш айди': # Ваш айди
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
             btnMenu = types.KeyboardButton('Меню')
             markup.add(btnMenu)
@@ -677,7 +677,7 @@ def get_text_message(message):
     obnov = [f'обновление']
     for obnovs in obnov:
         if obnovs in message.text.lower():
-            if str(message.chat.id) == '615009766':
+            if str(message.chat.id) == 'Ваш айди': # Ваш айди
                 with open('groups.json', 'r') as f:
                     groupload = json.load(f)    
                 orgs = [x for x in groupload]
